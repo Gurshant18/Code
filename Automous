@@ -1,0 +1,21 @@
+#define BOUND(n, l, h)  (((n) < (l))? (l): ((n) > (h))? (h): (n))
+#define Kp              0.1     //you may need to tune this
+
+void Drive(int drivePower)
+{
+    int turnPower = nMotorEncoder[rightMotor] - nMotorEncoder[leftMotor];
+    turnPower = BOUND((int)(turnPower*Kp), -10, 10);
+    motor[leftMotor] = BOUND(drivePower + turnPower, -100, 100);
+    motor[rightMotor] = BOUNT(drivePower - turnPower, -100, 100);
+}
+
+task main()
+{
+    nMotorEncoder[leftMotor] = 0;
+    nMotorEncoder[rightMotor] = 0;
+    while (true)
+    {
+        Drive(50);
+        wait1Msec(10);
+    }
+}
