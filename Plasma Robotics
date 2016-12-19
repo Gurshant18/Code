@@ -1,0 +1,69 @@
+package edu.wpi.first.wpilibj.test;
+
+
+import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.RobotDrive;
+
+/**
+*
+* @author Gurshant Grewal
+*/
+public class DriveTrain {
+private int LEFT_FRONT_JAG_PORT = 1;
+private int LEFT_BACK_JAG_PORT = 2;
+private int RIGHT_FRONT_JAG_PORT = 3;
+private int RIGHT_BACK_JAG_PORT = 4;
+private static DriveTrain instance = null;
+private Jaguar leftFront;
+private Jaguar leftBack;
+private Jaguar rightFront;
+private Jaguar rightBack;
+private RobotDrive robotDrive;
+
+private DriveTrain() {
+leftFront = new Jaguar(LEFT_FRONT_JAG_PORT);
+leftBack = new Jaguar(LEFT_BACK_JAG_PORT);
+rightFront = new Jaguar(RIGHT_FRONT_JAG_PORT);
+rightBack = new Jaguar(RIGHT_BACK_JAG_PORT);
+robotDrive = new RobotDrive(leftFront, leftBack, rightFront, rightBack);
+}
+
+public static DriveTrain getInstance() {
+if(instance == null) {
+instance = new DriveTrain();
+}
+return instance;
+}
+
+public void drive(double throttle, double turn) {
+robotDrive.drive(throttle, turn);
+}
+
+public void arcadeDrive(double throttle, double turn) {
+robotDrive.arcadeDrive(throttle, turn);
+}
+
+public void tankDrive(double left, double right) {
+robotDrive.tankDrive(left, right);
+}
+
+public double getLeftFrontSpeed() {
+return leftFront.getSpeed();
+}
+
+public double getLeftBackSpeed() {
+return leftBack.getSpeed();
+}
+
+public double getRightFrontSpeed() {
+return rightFront.getSpeed();
+}
+
+public double getRightBackSpeed() {
+return rightBack.getSpeed();
+}
+
+public void stop() {
+robotDrive.drive(0,0);
+}
+}
