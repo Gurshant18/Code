@@ -1,5 +1,5 @@
 #define BOUND(n, l, h)  (((n) < (l))? (l): ((n) > (h))? (h): (n))
-#define Kp              0.1     //you may need to tune this
+#define Kp              0.1    
 
 void Drive(int drivePower)
 {
