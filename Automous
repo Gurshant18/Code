@@ -15,7 +15,7 @@ task main()
     nMotorEncoder[rightMotor] = 0;
     while (true)
     {
-        Drive(50);
+        Drive(60);                               Change back  to 50
         wait1Msec(10);
     }
 }
